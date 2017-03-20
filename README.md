@@ -43,10 +43,13 @@ fred.name = "Brick"
 fred.weight = 999.2
 fred.homePlanet = "Mars"
 ```
+fred.homePlanet will not because it is a "let" constant
 
 ### Question 2
 
 Can you fix the class definition above so that it _does_ work?
+
+change "let" to "var"
 
 ### Question 3
 
@@ -74,6 +77,10 @@ bilbo.height = 1.42
 bilbo.homePlanet = "Saturn"
 ```
 
+
+yes
+
+
 ### Question 4
 
 Can you change the declaration of `bilbo` so that the above three lines of code _do_ work?
@@ -90,6 +97,9 @@ jason.name = "Jason"
 
 What will the value of `edgar.name` be after those three lines of code are run? What will the value of `jason.name` be? Why?
 
+Both "Jason".
+Class is a reference type.
+
 ### Question 6
 
 Given this bit of code that uses the `Alien` struct:
@@ -101,6 +111,10 @@ charlesFromJupiter.homePlanet = "Jupiter"
 ```
 
 What will the value of `charles.homePlanet` be after the above code run? What about the value of `charlesFromJupiter.homePlanet`? Why?
+
+charles, Pluto
+charlesFromJupiter, Jupiter
+struct is a value type, so each new instance retains its own copy of the struct.
 
 ### Question 7
 
@@ -123,9 +137,15 @@ struct BankAccount {
 
 Does this code work? Why or why not?
 
+No.  You are trying to change a property of a struct, which is immutable.  
+
 ### Question 8
 
 Can you fix the `BankAccount` struct so it _does_ work?
+
+Yes.
+
+mutating func withdraw
 
 ### Question 9
 
@@ -137,7 +157,12 @@ var joeOtherAccount = joeAccount
 joeAccount.withdraw(50.0)
 ```
 
-What will the value of `joeAccount.balance` be after the above code runs? What about the value of `joeOtherAccount.balance`? Why?
+What will the value of `joeAccount.balance` be after the above code runs? What about the value of `joeOtherAccount.balance`? Why?'
+
+joeAccount 50
+joeOtherAccount 100
+
+joeOtherAccount is an instance of the BankAccount struct, which is a value type.  Changes will not be applied to it because the method was not called on that instance.
 
 ### Question 10
 
@@ -168,5 +193,7 @@ library2.add(track: "Come As You Are")
 ```
 
 After this code runs, what are the contents of `library1.tracks`? What about the contents of `library2.tracks`? Why?
+
+Both have "Come As You Are" because the method "add" was called and changed a class variable, which changes the tracks varaiable for every instance of the class.  I think.
 
 <a href='https://learn.co/lessons/ClassesVsStructs' data-visibility='hidden'>View this lesson on Learn.co</a>
